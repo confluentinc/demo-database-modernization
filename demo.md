@@ -208,7 +208,7 @@ Alternatively you can use Confluent Cloud CLI to start a new connector by runnin
 4. Once the connector is in **Running** state navigate to **cloud.mongodb.com → Collections → <DATABASE_NAME>_FD_possible_stolen_card** and verify messages are showing up correctly. 
 
 ## Confluent Cloud Stream Lineage 
-Confluent gives you tools such as Stream Quality, Stream Catalog, and Stream Lineage to ensure your data is high quality, observable and discoverable.
+Confluent gives you tools such as Stream Quality, Stream Catalog, and Stream Lineage to ensure your data is high quality, observable and discoverable. Learn more about the **Stream Governance** [here](https://www.confluent.io/product/stream-governance/) and refer to the [docs](https://docs.confluent.io/cloud/current/stream-governance/overview.html) page for detailed information. 
 1. Navigate to https://confluent.cloud
 2. Use the left hand-side menu and click on **Stream Lineage**. 
 Stream lineage provides a graphical UI of the end to end flow of your data. Both from the a bird’s eye view and drill-down magnification for answering questions like:
