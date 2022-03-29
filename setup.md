@@ -37,6 +37,23 @@
 1. Choose **AWS** as the cloud provider and a supported **Region**
 1. Click on **Enable Schema Registry**. 
 
+## Create RabbitMQ topic
+1. Navigate to confluent.cloud
+2. On the navigation menu, select **Topics** and then **+Add topic** create a new topic with following configurations
+```
+Topic name: rabbitmq_transactions
+Partitions: 1
+```
+
+## Create ksqlDB cluster 
+> At Confluent we developed ksqlDB, the database purpose-built for stream processing applications. ksqlDB is built on top of Kafka Streams, powerful Java library for enriching, transforming, and processing real-time streams of data. Having Kafka Streams at its core means ksqlDB is built on well-designed and easily understood layers of abstractions. So now, beginners and experts alike can easily unlock and fully leverage the power of Kafka in a fun and accessible way.
+1. On the navigation menu, select **ksqlDB**.
+1. Click on **Create cluster myself**.
+1. Choose **Global access** for the access level and hit **Continue**.
+1. Pick a name or leave the name as is.
+1. Select **1** as the cluster size. 
+1. Hit **Launch Cluster!**. 
+
 ## Create an Oracle DB instance
 This demo uses AWS RDS Oracle that is publicly accessible. 
 1. Navigate to https://aws.amazon.com/console/ and log into your account. 
@@ -125,3 +142,7 @@ This demo uses RabbitMQ as a Service provided by https://www.cloudamqp.com/.
 2. Update `creditcard_send.py` and `creditcard_receive.py` scripts to include your `AMQP URL` string.
 3. Use the `creditcard_send.py` to populate the **RabbitMQ** instance with sample messages. 
 4. To verify that messages are received properly by the server, run `creditcard_receive.py`. 
+
+## Set up a MongoDB Atlas cluster
+1. Sign up for a free MongoDB account [here](https://www.mongodb.com/cloud/atlas/register1). This demo uses AWS Oregon (US-West-2) as the region.
+2. Create a **Shared** cluster using [this](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/) guide. 
