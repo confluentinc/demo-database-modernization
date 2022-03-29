@@ -38,7 +38,7 @@
 1. Click on **Enable Schema Registry**. 
 
 ## Create an Oracle DB instance
-In this demo we use AWS RDS Oracle that is publicly accessible. 
+This demo uses AWS RDS Oracle that is publicly accessible. 
 1. Navigate to https://aws.amazon.com/console/ and log into your account. 
 2. Search for **RDS** and click on results. 
 3. Click on **Create database** and create an Oracle database using the following configurations and leave everything else as default. 
@@ -71,7 +71,7 @@ SID: ORCL
 3. Before moving forward you need to configure the Oracle database according to [this](https://docs.confluent.io/kafka-connect-oracle-cdc/current/prereqs-validation.html#oracle-database-prerequisites) doc. 
 
 ## Populate Oracle database
-1. Create a new connection to Oracle database using the username and password from previous step. Our configuration is
+1. Create a new connection to Oracle database using the username and password from previous step. In this demo the configuration is
 ```
 Name: DB-Mod-Demo-User
 Username: DB_USER
@@ -80,7 +80,9 @@ Hostname:db-mod-demo.***.us-west-2.rds.amazonaws.com
 Port: 1521
 SID: ORCL
 ```
-2. Create the **Customers** table using the following query.
+2. You can use `populate_database.sql` to create **Customers** table and populate it, or proceed with the following steps. 
+
+3. Create the **Customers** table using the following query.
 ```SQL
 create table CUSTOMERS (
         id INT PRIMARY KEY,
@@ -91,7 +93,7 @@ create table CUSTOMERS (
         avg_credit_spend DOUBLE PRECISION
 );
 ```
-3. Populate the **Custmers** table using the following query. 
+4. Populate the **Custmers** table using the following query. 
 ```SQL
 insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) values (1, 'Rica', 'Blaisdell', '1958-04-23', 'rblaisdell0@rambler.ru', 2000);
 insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) values (2, 'Ruthie', 'Brockherst', '1971-07-17', 'rbrockherst1@ow.ly', 3000);
@@ -115,4 +117,11 @@ insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) 
 insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) values (20, 'Anselma', 'Rook', '1982-06-22', 'arookj@europa.eu', 12400.00);
 ```
 
-4. Commit these changes to the database by pressing the `Commit` icon or `F11`.
+5. Commit these changes to the database by pressing the `Commit` icon.
+
+## Set up RabbitMQ
+This demo uses RabbitMQ as a Service provided by https://www.cloudamqp.com/. 
+1. Create a new RabbitMQ instance in the same region as your Confluent Cloud cluster. This demo uses AWS Oregon (US-West-2).
+2. Update `creditcard_send.py` and `creditcard_receive.py` scripts to include your `AMQP URL` string.
+3. Use the `creditcard_send.py` to populate the **RabbitMQ** instance with sample messages. 
+4. To verify that messages are received properly by the server, run `creditcard_receive.py`. 
