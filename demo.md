@@ -217,5 +217,5 @@ Stream lineage provides a graphical UI of the end to end flow of your data. Both
     * Where, when, and how was it transformed?
 In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
 <div align="center" padding=25px>
-   <img src="../stream-lineage.png" width =75% heigth=75%>
+   <img src="stream-lineage.png" width =75% heigth=75%>
 </div>
