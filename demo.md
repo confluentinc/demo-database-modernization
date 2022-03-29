@@ -38,7 +38,7 @@
     }
   }
 ```
-> Alternatively you can use Confluent Cloud CLI to start a new connector by running the following command
+Alternatively you can use Confluent Cloud CLI to start a new connector by running the following command
 ```confluent connect create --config oracle_cdc.json```
 
 > In this demo, we are using Apache Kafka's Single Message Transforms (SMT) to mask customer PII field before data streams into Confluent Cloud. For more information on SMTs refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html)
@@ -68,7 +68,7 @@
   }
 }
 ```
-> Alternatively you can use Confluent Cloud CLI to start a new connector by running the following command
+Alternatively you can use Confluent Cloud CLI to start a new connector by running the following command
 ```confluent connect create --config rabbitmq.json```
 > Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions.
 4. Once the connector is in **Running** state verify the messages exist in **rabbitmq_transactions** topic.
@@ -80,6 +80,7 @@
 > You can interact with ksqlDB through the Editor. You can create a stream by using the CREATE STREAM statement and a table using the CREATE TABLE statement. If you’re interested in learning more about ksqlDB and the differences between streams and tables, I recommend reading these two blogs [here](https://www.confluent.io/blog/kafka-streams-tables-part-3-event-processing-fundamentals/) and [here](https://www.confluent.io/blog/how-real-time-stream-processing-works-with-ksqldb/) or watch ksqlDB 101 course on Confluent Developer [webiste](https://developer.confluent.io/learn-kafka/ksqldb/intro/). 
 
 To write streaming queries against topics, you will need to register the topics with ksqlDB as a stream and/or table.
+
 2. SET 'auto.offset.reset' = 'earliest';
 
 3. Create a ksqlDB stream from `ORCL.DB_USER.CUSTOMERS` topic.
@@ -200,8 +201,21 @@ SELECT * FROM fd_possible_stolen_card;
   }
 }
 ```
-> Alternatively you can use Confluent Cloud CLI to start a new connector by running the following command
+Alternatively you can use Confluent Cloud CLI to start a new connector by running the following command
 ```confluent connect create --config mongodb_sink.json```
 > Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-mongo-db-sink.html) for detailed instructions. 
 
 4. Once the connector is in **Running** state navigate to **cloud.mongodb.com → Collections → <DATABASE_NAME>_FD_possible_stolen_card** and verify messages are showing up correctly. 
+
+## Confluent Cloud Stream Lineage 
+Confluent gives you tools such as Stream Quality, Stream Catalog, and Stream Lineage to ensure your data is high quality, observable and discoverable.
+1. Navigate to https://confluent.cloud
+2. Use the left hand-side menu and click on **Stream Lineage**. 
+Stream lineage provides a graphical UI of the end to end flow of your data. Both from the a bird’s eye view and drill-down magnification for answering questions like:
+    * Where did data come from?
+    * Where is it going?
+    * Where, when, and how was it transformed?
+In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
+<div align="center" padding=25px>
+   <img src="../stream-lineage.png" width =75% heigth=75%>
+</div>
