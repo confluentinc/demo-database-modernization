@@ -1,0 +1,17 @@
+{
+  "name": "RabbitMQSourceConnector_0",
+  "config": {
+    "connector.class": "RabbitMQSource",
+    "name": "RabbitMQSourceConnector_0",
+    "kafka.auth.mode": "KAFKA_API_KEY",
+    "kafka.api.key": "<add_your_api_key>",
+    "kafka.api.secret": "<add_your_api_secret_key>",
+    "kafka.topic": "rabbitmq_transactions",
+    "rabbitmq.host": "<add_rabbitmq_host>",
+    "rabbitmq.username": "<add_rabbitmq_username>",
+    "rabbitmq.password": "<add_rabbitmq_password>",
+    "rabbitmq.virtual.host": "<add_rabbitmq_virtual_host>",
+    "rabbitmq.queue": "txs",
+    "tasks.max": "1"
+  }
+}
