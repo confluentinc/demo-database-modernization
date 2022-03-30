@@ -97,7 +97,7 @@ Hostname:db-mod-demo.***.us-west-2.rds.amazonaws.com
 Port: 1521
 SID: ORCL
 ```
-2. You can use `populate_database.sql` to create **Customers** table and populate it, or proceed with the following steps. 
+2. You can use `populate_database.sql` [script](populate_database.sql) to create **Customers** table and populate it, or proceed with the following steps. 
 
 3. Create the **Customers** table using the following query.
 ```SQL
