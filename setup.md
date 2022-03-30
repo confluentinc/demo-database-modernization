@@ -139,9 +139,9 @@ insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) 
 ## Set up RabbitMQ
 This demo uses RabbitMQ as a Service provided by https://www.cloudamqp.com/. 
 1. Create a new RabbitMQ instance in the same region as your Confluent Cloud cluster. This demo uses AWS Oregon (US-West-2).
-2. Update `creditcard_send.py` and `creditcard_receive.py` scripts to include your `AMQP URL` string.
-3. Use the `creditcard_send.py` to populate the **RabbitMQ** instance with sample messages. 
-4. To verify that messages are received properly by the server, run `creditcard_receive.py`. 
+2. Update `creditcard_send.py` [script](creditcard_send.py) and `creditcard_receive.py` [script](creditcard_receive.py) to include your `AMQP URL` string.
+3. Use the `creditcard_send.py` [script](creditcard_send.py) to populate the **RabbitMQ** instance with sample messages. 
+4. To verify that messages are received properly by the server, open a new terminal window and run `creditcard_receive.py` [script](creditcard_receive.py). 
 
 ## Set up a MongoDB Atlas cluster
 1. Sign up for a free MongoDB account [here](https://www.mongodb.com/cloud/atlas/register1). This demo uses AWS Oregon (US-West-2) as the region.
