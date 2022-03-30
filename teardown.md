@@ -35,4 +35,10 @@ drop stream fd_cust_raw_stream;
 
 ## RabbitMQ
 1. Navigate to https://customer.cloudamqp.com/user/settings
-2. Click on **Delete Account**
+
+2. Click on **Delete Account** and proceed with confirmation. 
+
+## MongoDB Atlas
+1. Navigate to cloud.mongodb.com
+
+2. Follow the instructions in the [doc](https://www.mongodb.com/docs/atlas/tutorial/delete-atlas-account/) to delete your account. 
