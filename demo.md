@@ -41,6 +41,8 @@
 Alternatively you can use Confluent Cloud CLI to start a new connector by running the following command
 ```confluent connect create --config oracle_cdc.json```
 
+> Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/) for detailed instructions. 
+
 > In this demo, we are using Apache Kafka's Single Message Transforms (SMT) to mask customer PII field before data streams into Confluent Cloud. For more information on SMTs refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html)
 
 5. Once the connector is in **Running** state verify the messages exist in **ORCL.DB_USER.CUSTOMERS** topic. 
@@ -73,11 +75,26 @@ Alternatively you can use Confluent Cloud CLI to start a new connector by runnin
 > Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions.
 4. Once the connector is in **Running** state verify the messages exist in **rabbitmq_transactions** topic.
 
+## Update customer's information in Oracle database
+The fully-managed Oracle CDC Source connector for Confluent Cloud captures each change to rows in a database and then represents the changes as change event records in Apache Kafka® topics. You can make changes to the source database (Oracle) and see the updated messages in Confluent Cloud's topic. 
+
+1. Update `oracle_config.py` [script](oracle_config.py) to include your database information. 
+
+2. Run `oracle_update.py` [script](oracle_update.py) to increase Rica Blaisdell's average credit spend by $5000. 
+
+> Alternatively, you can update the table by running the following command 
+```SQL
+update CUSTOMERS set avg_credit_spend = avg_credit_spend+5000 where first_name = 'Rica';
+```
+
+3. Navigate to **confluent.cloud → Topics → ORCL.DB_USER.CUSTOMERS → Messages** and verify the Rica Blaisdell's average credit is updated to $7000. 
+
+
 ## Enrich data streams with ksqlDB
 > Now that you have data flowing through Confluent, you can now easily build stream processing applications using ksqlDB. You are able to continuously transform, enrich, join, and aggregate your data using simple SQL syntax. You can gain value from your data directly from Confluent in real-time. Also, ksqlDB is a fully managed service within Confluent Cloud with a 99.9% uptime SLA. You can now focus on developing services and building your data pipeline while letting Confluent manage your resources for you.
 > With ksqlDB, you have the ability to leverage streams and tables from your topics in Confluent. A stream in ksqlDB is a topic with a schema and it records the history of what has happened in the world as a sequence of events.
 1. On the navigation menu click on **ksqlDB** and step into the cluster you created during setup.
-> You can interact with ksqlDB through the Editor. You can create a stream by using the CREATE STREAM statement and a table using the CREATE TABLE statement. If you’re interested in learning more about ksqlDB and the differences between streams and tables, I recommend reading these two blogs [here](https://www.confluent.io/blog/kafka-streams-tables-part-3-event-processing-fundamentals/) and [here](https://www.confluent.io/blog/how-real-time-stream-processing-works-with-ksqldb/) or watch ksqlDB 101 course on Confluent Developer [webiste](https://developer.confluent.io/learn-kafka/ksqldb/intro/). 
+> You can interact with ksqlDB through the Editor. You can create a stream by using the CREATE STREAM statement and a table using the CREATE TABLE statement. If you’re interested in learning more about ksqlDB and the differences between streams and tables, I recommend reading these two blogs [here](https://www.confluent.io/blog/kafka-streams-tables-part-3-event-processing-fundamentals/) and [here](https://www.confluent.io/blog/how-real-time-stream-processing-works-with-ksqldb/) or try different use cases by leveraging existing ksqlDB [recipes](https://developer.confluent.io/tutorials/#explore-top-use-cases). 
 
 To write streaming queries against topics, you will need to register the topics with ksqlDB as a stream and/or table.
 
