@@ -55,7 +55,7 @@ Partitions: 1
 1. Hit **Launch Cluster!**. 
 
 ## Create an Oracle DB instance
-This demo uses AWS RDS Oracle that is publicly accessible. 
+This demo uses AWS RDS Oracle that is publicly accessible. If your database is in a VPC, follow the instructions on our [doc](https://docs.confluent.io/cloud/current/networking/peering/aws-peering.html) page. 
 1. Navigate to https://aws.amazon.com/console/ and log into your account. 
 2. Search for **RDS** and click on results. 
 3. Click on **Create database** and create an Oracle database using the following configurations and leave everything else as default. 
