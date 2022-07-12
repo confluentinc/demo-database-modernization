@@ -11,7 +11,7 @@ Demo for the Database Modernization campaign. It includes fully-managed connecto
 - See [Teardown](./teardown.md).
 
 ## References
-1. Database modernization with Confluent Cloud [blog](here)
+1. Database modernization with Confluent Cloud [blog](https://www.confluent.io/blog/cloud-data-migrations-database-modernization-with-confluent/)
 2. Peering Connections in Confluent Cloud [doc](https://docs.confluent.io/cloud/current/networking/peering/index.html)
 3. Oracle CDC Source Connector for Confluent Cloud [doc](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/)
 4. Single Message Transforms for Managed Connectors [doc](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html)
