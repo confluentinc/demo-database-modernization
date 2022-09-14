@@ -1,15 +1,14 @@
-import cx_Oracle
+import oracledb
 import oracle_config
 import time
 
 connection = None
-count = 3
 try:
-    connection = cx_Oracle.connect(
-        oracle_config.username,
-        oracle_config.password,
-        oracle_config.dsn,
-        encoding=oracle_config.encoding)
+    connection = oracledb.connect(
+        user        = oracle_config.username,
+        password    = oracle_config.password,
+        dsn         = oracle_config.dsn,
+        port        = oracle_config.port) 
 
     cursor = connection.cursor()
     print("Showing Customer's table...")
@@ -22,7 +21,6 @@ try:
     print("")
     time.sleep(1)
 
-    # Increase the credit increase
     print("Increasing Rica Blaisdell's average credit spend by 5000")
     statement = "update CUSTOMERS set avg_credit_spend = avg_credit_spend+5000 where first_name = :1"
     cursor.execute(statement, ["Rica"])
@@ -38,8 +36,7 @@ try:
     for result in results:
         print(result)
 
-
-except cx_Oracle.Error as error:
+except oracledb.Error as error:
     print(error)
 finally:
     # release the connection

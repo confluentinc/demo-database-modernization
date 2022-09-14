@@ -146,3 +146,14 @@ This demo uses RabbitMQ as a Service provided by https://www.cloudamqp.com/.
 ## Set up a MongoDB Atlas cluster
 1. Sign up for a free MongoDB account [here](https://www.mongodb.com/cloud/atlas/register1). This demo uses AWS Oregon (US-West-2) as the region.
 2. Create a **Shared** cluster using [this](https://www.mongodb.com/docs/atlas/tutorial/create-new-cluster/) guide. 
+
+
+
+## Appendix: Install Oracle Instant Client
+
+The python oracledb package requires a local installation of the Oracle Instant Client library.
+```
+wget https://download.oracle.com/otn_software/linux/instantclient/217000/instantclient-basic-linux.x64-21.7.0.0.0dbru.zip -P /tmp/oracle
+unzip /tmp/oracle/instantclient-basic-linux.x64-21.7.0.0.0dbru.zip -d .
+export LD_LIBRARY_PATH=${PWD}/instantclient_21_7
+```
