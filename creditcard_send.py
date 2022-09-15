@@ -70,8 +70,7 @@ def generate_data():
 
 if __name__ == '__main__':
     generate_data()
-    # Access the CLODUAMQP_URL environment variable and parse it 
-    url = os.environ.get('CLOUDAMQP_URL', '<ADD_AMQP_URL>')
+    url = os.environ.get('CLOUDAMQP_URL')
     params = pika.URLParameters(url)
     connection = pika.BlockingConnection(params)
     channel = connection.channel() # start a channel

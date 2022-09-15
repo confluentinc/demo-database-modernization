@@ -5,8 +5,7 @@ import os
 import json
 
 if __name__ == '__main__':
-    # Access the CLODUAMQP_URL environment variable and parse it (fallback to localhost)
-    url = os.environ.get('CLOUDAMQP_URL', '<ADD_AMQP_URL>')
+    url = os.environ.get('CLOUDAMQP_URL')
     params = pika.URLParameters(url)
     connection = pika.BlockingConnection(params)
     channel = connection.channel() 
