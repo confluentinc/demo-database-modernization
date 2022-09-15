@@ -1,12 +1,5 @@
-create table CUSTOMERS (
-        id INT PRIMARY KEY,
-        first_name VARCHAR(50),
-        last_name VARCHAR(50),
-        dob VARCHAR(10),
-        email VARCHAR(50),
-        avg_credit_spend DOUBLE PRECISION
-);
-
+drop table CUSTOMERS;
+create table CUSTOMERS (id INT PRIMARY KEY, first_name VARCHAR(50), last_name VARCHAR(50), dob VARCHAR(10), email VARCHAR(50), avg_credit_spend DOUBLE PRECISION);
 insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) values (1, 'Rica', 'Blaisdell', '1958-04-23', 'rblaisdell0@rambler.ru', 2000);
 insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) values (2, 'Ruthie', 'Brockherst', '1971-07-17', 'rbrockherst1@ow.ly', 3000);
 insert into CUSTOMERS (id, first_name, last_name, dob, email, avg_credit_spend) values (3, 'Mariejeanne', 'Cocci', '1961-02-13', 'mcocci2@techcrunch.com', 4000);
