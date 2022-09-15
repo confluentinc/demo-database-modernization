@@ -1,14 +1,14 @@
 import oracledb
-import oracle_config
+import config
 import time
 
 connection = None
 try:
     connection = oracledb.connect(
-        user        = oracle_config.username,
-        password    = oracle_config.password,
-        dsn         = oracle_config.dsn,
-        port        = oracle_config.port) 
+        user        = config.username,
+        password    = config.password,
+        dsn         = config.dsn,
+        port        = config.port) 
 
     cursor = connection.cursor()
     print("Showing Customer's table...")
