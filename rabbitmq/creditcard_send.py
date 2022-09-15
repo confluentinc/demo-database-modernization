@@ -1,4 +1,3 @@
-from sqlite3 import DatabaseError
 import pika 
 import os
 import signal
@@ -7,8 +6,10 @@ import time
 import datetime
 import json
 import random
-import math
 import ccard
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
 
 def signal_handler(signal, frame):
     sys.exit(0)

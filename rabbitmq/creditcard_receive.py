@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 import pika
-import time
 import os
 import json
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
 
 if __name__ == '__main__':
     url = os.environ.get('CLOUDAMQP_URL')
