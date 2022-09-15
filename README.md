@@ -203,7 +203,7 @@ If you're in a hurry you can use Confluent Cloud CLI to submit all the source co
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
 1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector. 
 1. Use the following parameters to configure your connector
-    ```
+    ```json
     {
         "name": "OracleCdcSourceConnector_0",
         "config": {
@@ -246,7 +246,7 @@ Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
 2. In the search bar search for **RabbitMQ** and select the **RabbitMQ Source** which is a fully-managed connector. 
 3. Use the following parameters to configure your connector
-    ```
+    ```json
     {
     "name": "RabbitMQSourceConnector_0",
     "config": {
@@ -416,7 +416,7 @@ To write streaming queries against topics, you will need to register the topics 
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
 2. In the search bar search for **MongoDB** and select the **MongoDB Atlas Sink** which is a fully-managed connector. 
 3. Use the following parameters to configure your connector
-    ```
+    ```json
     {
     "name": "MongoDbAtlasSinkConnector_0",
     "config": {
