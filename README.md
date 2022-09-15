@@ -146,7 +146,7 @@ This demo uses RabbitMQ as a Service provided by https://www.cloudamqp.com/.
     CLOUDAMQP_PASSWORD=<my_rabbitmq_password>
     CLOUDAMQP_ENDPOINT=beaver-01.rmq.cloudamqp.com
     ```
-1. Use the `creditcard_send.py` [script](./rabbitmq/creditcard_send.py) to populate the **RabbitMQ** instance with sample messages. Quit with `Ctrl+C`.
+1. Use the `creditcard_send.py` [script](./rabbitmq/creditcard_send.py) to continuously populate the **RabbitMQ** instance with sample messages. Leave this running for the demo.
 1. To verify that messages are received properly by the server, open a new terminal window and run `creditcard_receive.py` [script](./rabbitmq/creditcard_receive.py). Quit with `Ctrl+C`.
 
 ## Set up a MongoDB Atlas cluster
@@ -459,6 +459,9 @@ In the bird's eye view you see how one stream feeds into another one. As your pi
 # Teardown
 You want to delete any resources that were created during the demo so you don't incur additional charges. 
 
+## RabbitMQ Script
+
+1. Go back to the terminal window where the [creditcard_send.py](./rabbitmq/creditcard_send.py) is running and quit with `Ctrl+C`.
 ## Confluent Cloud 
 1. Navigate to https://confluent.cloud
 Use the left hand-side menu and click on **ksqlDB** and step into your **ksqlDB application**.
