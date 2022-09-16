@@ -8,10 +8,10 @@
     "kafka.api.key": "<add_your_api_key>",
     "kafka.api.secret": "<add_your_api_secret_key>",
     "topics": "FD_possible_stolen_card",
-    "connection.host": "<database-host-address>",
-    "connection.user": "<add_MongoDB_username>",
-    "connection.password": "<add_MongoDB_password>",
-    "database": "<database-name>",
+    "connection.host": "<add_mongo_host_address>",
+    "connection.user": "<add_mongo_username>",
+    "connection.password": "<add_mongo_password>",
+    "database": "<add_mongo_database_name>",
     "doc.id.strategy": "FullKeyStrategy",
     "tasks.max": "1"
   }
