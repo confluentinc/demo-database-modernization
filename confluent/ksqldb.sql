@@ -1,4 +1,4 @@
-CREATE STREAM fd_cust_raw_stream WITH (KAFKA_TOPIC = 'ORCL.DB_USER.CUSTOMERS',VALUE_FORMAT = 'JSON_SR');
+CREATE STREAM fd_cust_raw_stream WITH (KAFKA_TOPIC = 'ORCL.ADMIN.CUSTOMERS',VALUE_FORMAT = 'JSON_SR');
 CREATE TABLE fd_customers WITH (FORMAT='JSON_SR') AS 
     SELECT id                            AS customer_id,
            LATEST_BY_OFFSET(first_name)  AS first_name,

@@ -192,7 +192,7 @@ If you're in a hurry you can use Confluent Cloud CLI to submit all the source co
     ```
 1. Submit the source connectors:
     ```
-    for i in actual_oracle_cdc.json actual_rabbitmq.json; do
+    for i in ./confluent/actual_oracle_cdc.json ./confluent/actual_rabbitmq.json; do
         confluent connect create --config $i
     done
     ```
@@ -217,7 +217,7 @@ If you're in a hurry you can use Confluent Cloud CLI to submit all the source co
         "oracle.sid": "ORCL",
         "oracle.username": "DB_USER",
         "oracle.password": "dbmod",
-        "table.inclusion.regex": "ORCL[.]DB_USER[.]CUSTOMERS",
+        "table.inclusion.regex": "ORCL[.]ADMIN[.]CUSTOMERS",
         "start.from": "snapshot",
         "query.timeout.ms": "60000",
         "redo.log.row.fetch.size": "1",
@@ -235,7 +235,7 @@ If you're in a hurry you can use Confluent Cloud CLI to submit all the source co
         }
     }
     ```
-1. Once the connector is in **Running** state verify the messages exist in **ORCL.DB_USER.CUSTOMERS** topic.
+1. Once the connector is in **Running** state verify the messages exist in **ORCL.ADMIN.CUSTOMERS** topic.
 
 In this demo, we are using Apache Kafka's Single Message Transforms (SMT) to mask customer PII field before data streams into Confluent Cloud. For more information on SMTs refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html).
 
@@ -272,7 +272,7 @@ Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/
 ## Update Customer Information in Oracle Database
 The fully-managed Oracle CDC Source connector for Confluent Cloud captures each change to rows in a database and then represents the changes as change event records in Apache Kafka® topics. You can make changes to the source database (Oracle) and see the updated messages in Confluent Cloud's topic. 
 
-1. Navigate to **confluent.cloud → Topics → ORCL.DB_USER.CUSTOMERS → Messages** and keep the page open to see the update.
+1. Navigate to **confluent.cloud → Topics → ORCL.ADMIN.CUSTOMERS → Messages** and keep the page open to see the update.
 
 1. Run a python script to increase Rica Blaisdell's average credit spend by $5000.
     ```
@@ -304,10 +304,10 @@ To write streaming queries against topics, you will need to register the topics 
 
 2. SET 'auto.offset.reset' = 'earliest';
 
-3. Create a ksqlDB stream from `ORCL.DB_USER.CUSTOMERS` topic.
+3. Create a ksqlDB stream from `ORCL.ADMIN.CUSTOMERS` topic.
     ```SQL
     CREATE STREAM fd_cust_raw_stream
-    WITH (KAFKA_TOPIC = 'ORCL.DB_USER.CUSTOMERS',
+    WITH (KAFKA_TOPIC = 'ORCL.ADMIN.CUSTOMERS',
           VALUE_FORMAT = 'JSON_SR');
     ```
 
