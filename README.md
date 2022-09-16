@@ -302,7 +302,10 @@ If you’re interested in learning more about ksqlDB and the differences between
 
 To write streaming queries against topics, you will need to register the topics with ksqlDB as a stream or table.
 
-2. SET 'auto.offset.reset' = 'earliest';
+2. **VERY IMPORTANT** -- at the bottom of the editor, set `auto.offset.reset` to `earliest`, or enter the statement:
+    ```SQL
+    SET 'auto.offset.reset' = 'earliest';
+    ```
 
 3. Create a ksqlDB stream from `ORCL.ADMIN.CUSTOMERS` topic.
     ```SQL
