@@ -28,7 +28,7 @@ if __name__ == '__main__':
             epoch = datetime.datetime.now().timestamp()
             curr_timestamp = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(epoch))
             curr_ip_address = '.'.join('%s'%rand.randint(0, 255) for i in range(4))
-            curr_credit_card = rand.choice([ccard.visa(), ccard.americanexpress()])
+            curr_credit_card = str(rand.choice([ccard.visa(), ccard.americanexpress()]))
             curr_transaction_id = rand.randint(1,100)
             message = json.dumps(
                 {'userid': curr_id,

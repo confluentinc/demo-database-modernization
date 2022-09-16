@@ -274,17 +274,9 @@ The fully-managed Oracle CDC Source connector for Confluent Cloud captures each 
 
 1. Navigate to **confluent.cloud → Topics → ORCL.ADMIN.CUSTOMERS → Messages** and keep the page open to see the update.
 
-1. Run a python script to increase Rica Blaisdell's average credit spend by $5000.
+1. Run a python script to increase Rica Blaisdell's average credit spend by $1 every 5 seconds. Leave this script running throughout the demo.
     ```
     python oracle/update_user.py
-    ```
-
-    Alternatively, you can update the table by running the following command 
-
-    ```SQL
-    UPDATE CUSTOMERS
-    SET avg_credit_spend = avg_credit_spend + 5000
-    WHERE first_name = 'Rica';
     ```
 
 1. Back in the Confluent Cloud console, verify the Rica Blaisdell's average credit is updated to $7000. 
@@ -465,6 +457,10 @@ You want to delete any resources that were created during the demo so you don't 
 ## RabbitMQ Script
 
 1. Go back to the terminal window where the [creditcard_send.py](./rabbitmq/creditcard_send.py) is running and quit with `Ctrl+C`.
+
+## Oracle Script
+
+1. Go back to the terminal window where the [update_user.py](./oracle/update_user.py) is running and quit with `Ctrl+C`.
 ## Confluent Cloud 
 1. Navigate to https://confluent.cloud
 Use the left hand-side menu and click on **ksqlDB** and step into your **ksqlDB application**.
