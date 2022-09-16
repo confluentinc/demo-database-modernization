@@ -216,7 +216,7 @@ If you're in a hurry you can use Confluent Cloud CLI to submit all the source co
         "oracle.port": "1521",
         "oracle.sid": "ORCL",
         "oracle.username": "DB_USER",
-        "oracle.password": "<add_your_password>",
+        "oracle.password": "dbmod",
         "table.inclusion.regex": "ORCL[.]DB_USER[.]CUSTOMERS",
         "start.from": "snapshot",
         "query.timeout.ms": "60000",
