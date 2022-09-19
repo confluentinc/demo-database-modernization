@@ -279,7 +279,7 @@ The fully-managed Oracle CDC Source connector for Confluent Cloud captures each 
     python oracle/update_user.py
     ```
 
-1. Back in the Confluent Cloud console, verify the Rica Blaisdell's average credit is updated to $7000. 
+1. Back in the Confluent Cloud console, verify the Rica Blaisdell's average credit has been updated. 
 
 
 ## Enrich Data Streams with ksqlDB
@@ -298,6 +298,7 @@ To write streaming queries against topics, you will need to register the topics 
     ```SQL
     SET 'auto.offset.reset' = 'earliest';
     ```
+    If you use the default value of `latest`, then ksqlDB will read form the tail of the topics rather than the beginning, which means streams and tables won't have all the data you think they should.
 
 3. Create a ksqlDB stream from `ORCL.ADMIN.CUSTOMERS` topic.
     ```SQL
