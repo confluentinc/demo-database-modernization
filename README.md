@@ -8,6 +8,21 @@ For the full story on Confluent's Database Modernization solution, check out the
 
 # Setup
 
+## Set up Local Workstation
+
+The easiest way to run this demo is to launch a preconfigured workspace in Gitpod by clicking this link:
+- https://gitpod.io/#https://github.com/confluentinc/demo-10x-storage.git
+
+If you are **not** using Gitpod, then clone this repo and configure your local python environment:
+
+```
+git clone https://github.com/confluentinc/demo-database-modernization.git
+cd demo-database-modernization
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ## Set up Confluent Cloud
 1. Sign up for a Confluent Cloud account [here](https://www.confluent.io/get-started/).
 2. After verifying your email address, access Confluent Cloud sign-in by navigating [here](https://confluent.cloud).
@@ -113,18 +128,6 @@ Hostname:db-mod-demo.***.us-west-2.rds.amazonaws.com
 Port: 1521
 SID: ORCL
 ``` 
-
-### Configure Local Python Environment
-
-If you are using Gitpod, you can skip this step, since your environment has been preconfigured.
-
-If you are **not** using Gitpod, then configure your local python environment:
-
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
 
 ### Prepare the Database for Change Data Capture
 
