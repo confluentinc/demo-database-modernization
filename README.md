@@ -11,7 +11,7 @@ For the full story on Confluent's Database Modernization solution, check out the
 ## Set up Local Workstation
 
 The easiest way to run this demo is to launch a preconfigured workspace in Gitpod by clicking this link:
-- https://gitpod.io/#https://github.com/confluentinc/demo-10x-storage.git
+- https://gitpod.io/#https://github.com/confluentinc/demo-database-modernization
 
 If you are **not** using Gitpod, then clone this repo and configure your local python environment:
 
