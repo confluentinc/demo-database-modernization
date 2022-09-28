@@ -14,5 +14,5 @@ github:
 tasks:
   - name: demo
     init: |
+      curl -sL --http1.1 https://cnfl.io/cli | sh -s -- -b /home/gitpod/.local/bin/ && \
       pip install -r requirements.txt
-      curl -sL --http1.1 https://cnfl.io/cli | sh -s -- -b /home/gitpod/.local/bin/
