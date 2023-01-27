@@ -1,10 +1,14 @@
 # Database Modernization Demo
 
-There is unprecedented growth in the volumes of data being generated, and it’s essential for businesses to be able to contextualize and harness the value of their data in real time. On-prem databases are slow and rigid, which is expensive in terms of both upfront and ongoing maintenance costs, and as a result, limit the speed at which businesses can scale, experiment, and drive innovation.
+Amid unprecedented volumes of data being generated, organizations need to harness the value of their data from heterogeneous systems in real time. However, on-prem databases are slow, rigid, and expensive to maintain, limiting the speed at which businesses can scale and drive innovation. Today’s organizations need scalable, cloud-native databases with real-time data. This demo walks you through building streaming data pipelines with Confluent Cloud. You’ll learn about:
 
-Today’s organizations need scalable, cloud-native databases for improved agility, elasticity, and cost-efficiency. With modern databases, companies can focus on building new, real time applications with ease instead of spending time and resources patching, maintaining, and managing their database. Real-time data streaming powered by Apache Kafka® makes it possible to move data reliably at scale while keeping data systems online during the migration through streaming ETL pipelines instead of batch-based processes.
+-Confluent’s fully managed Oracle CDC and RabbitMQ Source connectors to stream customer data and credit card transactions in real time into Confluent Cloud
+-ksqlDB to process and enrich data streams in real timem. You'll use aggregates and windowing to create a customer list of potentially stolen credit cards
+-A fully managed sink connector to load enriched data into MongoDB Atlas for real-time fraud analysis
 
-For the full story on Confluent's Database Modernization solution, check out the [database modernization solution page](https://www.confluent.io/use-case/database/).
+Break down data silos and stream on-premises, hybrid, and multicloud data to cloud databases such as MongoDB Atlas, Azure Cosmos DB, DynamoDB and more, so that every system and application has a consistent, up-to-date, and enhanced view of the data at all times. With Confluent streaming data pipelines, you can connect, process, and govern real-time data for all of your databases. Unlock real-time insights, focus on building innovative apps instead of managing databases, and confidently pave a path to cloud migration and transformation.
+
+To learn more about Confluent’s solution, visit the [Database streaming pipelines page] (https://www.confluent.io/use-case/database)
 
 # Setup
 
