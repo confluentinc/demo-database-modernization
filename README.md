@@ -438,11 +438,11 @@ You want to delete any resources that were created during the demo so you don't 
 
 ## RabbitMQ Script
 
-1. Go back to the terminal window where the [creditcard_send.py](./rabbitmq/creditcard_send.py) is running and quit with `Ctrl+C`.
+Go back to the terminal window where the [creditcard_send.py](./rabbitmq/creditcard_send.py) is running and quit with `Ctrl+C`.
 
 ## Oracle Script
 
-1. Go back to the terminal window where the [update_user.py](./oracle/update_user.py) is running and quit with `Ctrl+C`.
+Go back to the terminal window where the [update_user.py](./oracle/update_user.py) is running and quit with `Ctrl+C`.
 
 ## Infrastructure
 
