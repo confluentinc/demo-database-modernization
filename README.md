@@ -202,22 +202,26 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 
 <details>
     <summary><b>CLI</b></summary>
-    1. Run the following commands to create Oracle CDC Source Premium and RabbitMQ Source connectors
-        ```bash
-        confluent connect cluster create --config-file confluent/actual_oracle_cdc.json  
-        confluent connect cluster create --config-file confluent/actual_rabbitmq.json
-        ```
+
+1. Run the following commands to create Oracle CDC Source Premium and RabbitMQ Source connectors.
+
+   ```bash
+   confluent connect cluster create --config-file confluent/actual_oracle_cdc.json
+   confluent connect cluster create --config-file confluent/actual_rabbitmq.json
+   ```
+
 </details>
 <br>
 
 <details>
     <summary><b>Confluent Cloud Web UI</b></summary>
-    1. Log into Confluent Cloud by navigating to https://confluent.cloud
-    1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
-    1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
-    1. Create a new connector and complete the required fields using `actual_oracle_cdc.json` file.
-    1. Now search for **RabbitMQ** select the **RabbitMQ Source** which is a fully-managed connector.
-    1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` file.
+
+1. Log into Confluent Cloud by navigating to https://confluent.cloud
+1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
+1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
+1. Create a new connector and complete the required fields using `actual_oracle_cdc.json` file.
+1. Now search for **RabbitMQ** select the **RabbitMQ Source** which is a fully-managed connector.
+1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` file.
 
 </details>
 <br>
