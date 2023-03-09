@@ -168,7 +168,7 @@ In order to successfully complete this demo you need to install few tools before
 
 Confluent offers 120+ pre-built [connectors](https://www.confluent.io/product/confluent-connectors/), enabling you to modernize your entire data architecture even faster. These connectors also provide you peace-of-mind with enterprise-grade security, reliability, compatibility, and support.
 
-### Automated Connector Submission (Optional)
+### Automated Connector Configuration File Creation
 
 You can use Confluent Cloud CLI to submit all the source connectors automatically.
 
@@ -178,30 +178,27 @@ You can use Confluent Cloud CLI to submit all the source connectors automaticall
    ./confluent/create-connector-files.sh
    ```
 
-1. Log into your Confluent account in the CLI.
-   ```
-   confluent login --save
-   ```
-1. Use your environment and your cluster.
-   ```
-   confluent environment list
-   confluent environment use <your_env_id>
-   confluent kafka cluster list
-   confluent kafka cluster use <your_cluster_id>
-   ```
-1. Submit the source connectors:
-   ```
-   for i in ./confluent/actual_oracle_cdc.json ./confluent/actual_rabbitmq.json; do
-       confluent connect create --config $i
-   done
-   ```
-
-### Configure Oracle CDC Source Premium Connector
+### Configure Oracle CDC Source Premium and RabbitMQ Source Connectors
 
 You can create the connectors either through CLI or Confluent Cloud web UI.
 
 <details>
     <summary><b>CLI</b></summary>
+
+1. Log into your Confluent account in the CLI.
+
+   ```bash
+   confluent login --save
+   ```
+
+1. Use your environment and your cluster.
+
+   ```bash
+   confluent environment list
+   confluent environment use <your_env_id>
+   confluent kafka cluster list
+   confluent kafka cluster use <your_cluster_id>
+   ```
 
 1. Run the following commands to create Oracle CDC Source Premium and RabbitMQ Source connectors.
 
@@ -226,39 +223,11 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 </details>
 <br>
 
-1. Once the connector is in **Running** state verify the messages exist in **ORCL.ADMIN.CUSTOMERS** topic.
-
 In this demo, we are using Apache Kafka's Single Message Transforms (SMT) to mask customer PII field before data streams into Confluent Cloud. For more information on SMTs refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html).
 
-Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/) for detailed instructions for this connector.
+Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/) for detailed instructions and troubleshooting.
 
-### Configure RabbitMQ Source Connector
-
-1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
-2. In the search bar search for **RabbitMQ** and select the **RabbitMQ Source** which is a fully-managed connector.
-3. Use the following parameters to configure your connector
-   ```json
-   {
-     "name": "RabbitMQSourceConnector_0",
-     "config": {
-       "connector.class": "RabbitMQSource",
-       "name": "RabbitMQSourceConnector_0",
-       "kafka.auth.mode": "KAFKA_API_KEY",
-       "kafka.api.key": "<add_your_api_key>",
-       "kafka.api.secret": "<add_your_api_secret_key>",
-       "kafka.topic": "rabbitmq_transactions",
-       "rabbitmq.host": "<add_rabbitmq_host>",
-       "rabbitmq.username": "<add_rabbitmq_username>",
-       "rabbitmq.password": "<add_rabbitmq_password>",
-       "rabbitmq.virtual.host": "<add_rabbitmq_virtual_host>",
-       "rabbitmq.queue": "txs",
-       "tasks.max": "1"
-     }
-   }
-   ```
-4. Once the connector is in **Running** state verify the messages exist in **rabbitmq_transactions** topic.
-
-Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions for this connector.
+Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions and troubleshooting.
 
 ## Update Customer Information in Oracle Database
 
