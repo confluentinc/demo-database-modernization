@@ -443,6 +443,7 @@ Confluent offers data governance tools such as Stream Quality, Stream Catalog, a
 
     In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
 
+
 ---
 
 ## CONGRATULATIONS
