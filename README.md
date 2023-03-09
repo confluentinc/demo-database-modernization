@@ -170,16 +170,14 @@ Confluent offers 120+ pre-built [connectors](https://www.confluent.io/product/co
 
 ### Automated Connector Submission (Optional)
 
-If you're in a hurry you can use Confluent Cloud CLI to submit all the source connectors automatically.
+You can use Confluent Cloud CLI to submit all the source connectors automatically.
 
 1. Run a script that uses your `.env` file to generate real connector configuration json files from the example files located in the `confluent` folder.
+
    ```bash
    ./confluent/create-connector-files.sh
    ```
-1. Install the `confluent` CLI.
-   ```
-   sudo curl -sL --http1.1 https://cnfl.io/cli | sh -s -- -b /usr/local/bin
-   ```
+
 1. Log into your Confluent account in the CLI.
    ```
    confluent login --save
@@ -200,42 +198,30 @@ If you're in a hurry you can use Confluent Cloud CLI to submit all the source co
 
 ### Configure Oracle CDC Source Premium Connector
 
-1. Log into Confluent Cloud by navigating to https://confluent.cloud
-1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
-1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
-1. Use the following parameters to configure your connector
-   ```json
-   {
-     "name": "OracleCdcSourceConnector_0",
-     "config": {
-       "connector.class": "OracleCdcSource",
-       "name": "OracleCdcSourceConnector_0",
-       "kafka.auth.mode": "KAFKA_API_KEY",
-       "kafka.api.key": "<add_your_api_key>",
-       "kafka.api.secret": "<add_your_api_secret_key>",
-       "oracle.server": "db-mod-demo.***.us-west-2.rds.amazonaws.com",
-       "oracle.port": "1521",
-       "oracle.sid": "ORCL",
-       "oracle.username": "DB_USER",
-       "oracle.password": "dbmod",
-       "table.inclusion.regex": "ORCL[.]ADMIN[.]CUSTOMERS",
-       "start.from": "snapshot",
-       "query.timeout.ms": "60000",
-       "redo.log.row.fetch.size": "1",
-       "table.topic.name.template": "${databaseName}.${schemaName}.${tableName}",
-       "lob.topic.name.template": "${databaseName}.${schemaName}.${tableName}.${columnName}",
-       "enable.large.lob.object.support": "true",
-       "numeric.mapping": "best_fit_or_double",
-       "output.data.key.format": "JSON",
-       "output.data.value.format": "JSON_SR",
-       "transforms": "DoB_Mask",
-       "transforms.DoB_Mask.type": "org.apache.kafka.connect.transforms.MaskField$Value",
-       "transforms.DoB_Mask.fields": "DOB",
-       "transforms.DoB_Mask.replacement": "<xxxx-xx-xx>",
-       "tasks.max": "1"
-     }
-   }
-   ```
+You can create the connectors either through CLI or Confluent Cloud web UI.
+
+<details>
+    <summary><b>CLI</b></summary>
+    1. Run the following commands to create Oracle CDC Source Premium and RabbitMQ Source connectors
+        ```bash
+        confluent connect cluster create --config-file confluent/actual_oracle_cdc.json  
+        confluent connect cluster create --config-file confluent/actual_rabbitmq.json
+        ```
+</details>
+<br>
+
+<details>
+    <summary><b>Confluent Cloud Web UI</b></summary>
+    1. Log into Confluent Cloud by navigating to https://confluent.cloud
+    1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
+    1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
+    1. Create a new connector and complete the required fields using `actual_oracle_cdc.json` file.
+    1. Now search for **RabbitMQ** select the **RabbitMQ Source** which is a fully-managed connector.
+    1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` file.
+
+</details>
+<br>
+
 1. Once the connector is in **Running** state verify the messages exist in **ORCL.ADMIN.CUSTOMERS** topic.
 
 In this demo, we are using Apache Kafka's Single Message Transforms (SMT) to mask customer PII field before data streams into Confluent Cloud. For more information on SMTs refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html).
