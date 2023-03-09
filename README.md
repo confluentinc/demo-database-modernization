@@ -162,7 +162,7 @@ In order to successfully complete this demo you need to install few tools before
 
 1. Take a moment to inspect the files in the `oracle` directory to understand what just happened.
 
-### Sumit new Credit Card Transactions
+### Submit new Credit Card Transactions
 
 1. Use the `creditcard_send.py` [script](./rabbitmq/creditcard_send.py) to continuously populate the **RabbitMQ** instance with sample messages. Leave this running for the demo.
 
@@ -229,9 +229,9 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 1. Log into Confluent Cloud by navigating to https://confluent.cloud
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
 1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
-1. Create a new Oracle CDC Source Premium connector and complete the required fields using `actual_oracle_cdc.json` file.
+1. Create a new Oracle CDC Source Premium connector and complete the required fields using `actual_oracle_cdc.json` [file](./confluent/actual_oracle_cdc.json).
 1. Now search for **RabbitMQ** select the **RabbitMQ Source** which is a fully-managed connector.
-1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` file.
+1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` [file](./confluent/actual_rabbitmq.json).
 
 </details>
 <br>
@@ -277,9 +277,7 @@ To write streaming queries against topics, you will need to register the topics 
 3. Create a ksqlDB stream from `ORCL.ADMIN.CUSTOMERS` topic.
 
    ```SQL
-   CREATE STREAM fd_cust_raw_stream
-   WITH (KAFKA_TOPIC = 'ORCL.ADMIN.CUSTOMERS',
-         VALUE_FORMAT = 'JSON_SR');
+   CREATE STREAM fd_cust_raw_stream WITH (KAFKA_TOPIC = 'ORCL.ADMIN.CUSTOMERS', VALUE_FORMAT = 'JSON_SR');
    ```
 
 4. Use the following statement to query `fd_cust_raw_stream` stream to ensure it's being populated correctly.
@@ -389,37 +387,31 @@ To write streaming queries against topics, you will need to register the topics 
 
 ## Connect MongoDB Atlas to Confluent Cloud
 
-0. (Optional) If you have been using the `confluent` CLI to submit connectors, run this CLI command to submit your MonogoDB sink connector:
+You can create the MongoDB Atlas Sink connector either through CLI or Confluent Cloud web UI.
+
+<details>
+    <summary><b>CLI</b></summary>
+
+1. Run the following command to create the MongoDB Atlas Sink connector.
+
+   ```bash
+   confluent connect cluster create --config-file confluent/actual_mongodb_sink.json
    ```
-   confluent connect create \
-       --config ./confluent/actual_mongodb_sink.json
-   ```
+
+</details>
+<br>
+
+<details>
+    <summary><b>Confluent Cloud Web UI</b></summary>
+
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
-2. In the search bar search for **MongoDB** and select the **MongoDB Atlas Sink** which is a fully-managed connector.
-3. Use the following parameters to configure your connector
+1. In the search bar search for **MongoDB** and select the **MongoDB Atlas Sink** which is a fully-managed connector.
+1. Create a new MongoDB Atlas Sink connector and complete the required fields using `actual_mongodb_sink.json` [file](./confluent/actual_mongodb_sink.json).
 
-   ```json
-   {
-     "name": "MongoDbAtlasSinkConnector_0",
-     "config": {
-       "connector.class": "MongoDbAtlasSink",
-       "name": "MongoDbAtlasSinkConnector_0",
-       "input.data.format": "JSON",
-       "kafka.auth.mode": "KAFKA_API_KEY",
-       "kafka.api.key": "<add_your_api_key>",
-       "kafka.api.secret": "<add_your_api_secret_key>",
-       "topics": "FD_possible_stolen_card",
-       "connection.host": "<database-host-address>",
-       "connection.user": "<add_MongoDB_username>",
-       "connection.password": "<add_MongoDB_password>",
-       "database": "<database-name>",
-       "doc.id.strategy": "FullKeyStrategy",
-       "tasks.max": "1"
-     }
-   }
-   ```
+</details>
+<br>
 
-4. Once the connector is in **Running** state navigate to **cloud.mongodb.com → Collections → demo-database-modernization_FD_possible_stolen_card** and verify messages are showing up correctly.
+Once the connector is in **Running** state navigate to **cloud.mongodb.com → Collections → demo-database-modernization_FD_possible_stolen_card** and verify messages are showing up correctly.
 
 Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-mongo-db-sink.html) for detailed instructions about this connector.
 
@@ -427,15 +419,18 @@ Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/
 
 Confluent offers data governance tools such as Stream Quality, Stream Catalog, and Stream Lineage in a package called Stream Governance. These features ensure your data is high quality, observable and discoverable. Learn more about **Stream Governance** [here](https://www.confluent.io/product/stream-governance/) and refer to the [docs](https://docs.confluent.io/cloud/current/stream-governance/overview.html) page for detailed information.
 
-1. Navigate to https://confluent.cloud
-2. Use the left hand-side menu and click on **Stream Lineage**.
-Stream lineage provides a graphical UI of the end to end flow of your data. Both from the a bird’s eye view and drill-down magnification for answering questions like:
-_ Where did data come from?
-_ Where is it going? \* Where, when, and how was it transformed?
-In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
-<div align="center" padding=25px>
-   <img src="./confluent/stream-lineage.png" width =75% heigth=75%>
-</div>
+1.  Navigate to https://confluent.cloud
+1.  Use the left hand-side menu and click on **Stream Lineage**.
+    Stream lineage provides a graphical UI of the end to end flow of your data. Both from the a bird’s eye view and drill-down magnification for answering questions like:
+
+        - Where did data come from?
+        - Where is it going?
+        - Where, when, and how was it transformed?
+
+    In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
+    <div align="center" padding=25px>
+       <img src="./confluent/stream-lineage.png" width =75% heigth=75%>
+    </div>
 
 # Teardown
 
@@ -449,50 +444,21 @@ You want to delete any resources that were created during the demo so you don't 
 
 1. Go back to the terminal window where the [update_user.py](./oracle/update_user.py) is running and quit with `Ctrl+C`.
 
-## Confluent Cloud
+## Infrastructure
 
-1. Navigate to https://confluent.cloud
-   Use the left hand-side menu and click on **ksqlDB** and step into your **ksqlDB application**.
+1. Run the following command to delete all connectors
 
-2. SET 'auto.offset.reset' = 'earliest';
-
-3. Use the editor and run the following queries.
-   ```SQL
-   drop table fd_possible_stolen_card;
-   drop stream fd_transactions_enriched;
-   drop stream fd_transactions;
-   drop table fd_customers;
-   drop stream fd_cust_raw_stream;
+   ```bash
+   ./teardown_connectors.sh
    ```
-4. Use the left hand-side menue select **Data Integration** and then **Connectors**.
 
-5. Click on each connector's name and delete them.
-
-   > Alternatively, you can delete connectors through REST API calls. Refer to our [docs](https://docs.confluent.io/cloud/current/connectors/connect-api-section.html) for detailed instructions.
-
-6. Use the left hand-side menu select **Data Integration** and then **API Keys**. Click on each key and hit **Delete API key**.
-
-7. Finally, delete the cluster and the environment.
-
-## AWS
-
-1. Navigate to https://aws.amazon.com/console/ and log into your account.
-
-2. Search for **RDS** and click on results.
-
-3. Use the left hand-side menu and click on **Databases → db-mod-demo → Actions → Delete** and proceed with deleting the database instance.
-
-## RabbitMQ
-
-1. Navigate to https://customer.cloudamqp.com/user/settings
-
-2. Click on **Delete Account** and proceed with confirmation.
-
-## MongoDB Atlas
-
-1. Navigate to cloud.mongodb.com
-
-2. Follow the instructions in the [doc](https://www.mongodb.com/docs/atlas/tutorial/delete-atlas-account/) to delete your account.
+1. Run the following command to delete all resources created by Terraform
+   ```bash
+   terraform apply -destory
+   ```
+1. Furthermore you can delete your CloudAMQP and MongoDB accounts.
+   - To delete CloudAMQP account navigate to https://customer.cloudamqp.com/user/settings and then click on **Delete Account** and proceed with confirmation.
+   - To delete MongoDB account navigate to cloud.mongodb.com and follow the instructions detailed on the [doc](https://www.mongodb.com/docs/atlas/tutorial/delete-atlas-account/).
 
 # References
 
