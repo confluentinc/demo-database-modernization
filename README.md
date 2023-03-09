@@ -216,7 +216,7 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 1. Log into Confluent Cloud by navigating to https://confluent.cloud
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
 1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
-1. Create a new connector and complete the required fields using `actual_oracle_cdc.json` file.
+1. Create a new Oracle CDC Source Premium connector and complete the required fields using `actual_oracle_cdc.json` file.
 1. Now search for **RabbitMQ** select the **RabbitMQ Source** which is a fully-managed connector.
 1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` file.
 
@@ -225,9 +225,9 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 
 In this demo, we are using Apache Kafka's Single Message Transforms (SMT) to mask customer PII field before data streams into Confluent Cloud. For more information on SMTs refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html).
 
-Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/) for detailed instructions and troubleshooting.
+Refer to Oracle CDC Source Premium [documentation](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/) for detailed instructions and troubleshooting.
 
-Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions and troubleshooting.
+Refer to RabbitMQ [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions and troubleshooting.
 
 ## Update Customer Information in Oracle Database
 
