@@ -162,6 +162,19 @@ In order to successfully complete this demo you need to install few tools before
 
 1. Take a moment to inspect the files in the `oracle` directory to understand what just happened.
 
+### Sumit new Credit Card Transactions
+
+1. Use the `creditcard_send.py` [script](./rabbitmq/creditcard_send.py) to continuously populate the **RabbitMQ** instance with sample messages. Leave this running for the demo.
+
+   ```bash
+   python3 ./rabbitmq/creditcard_send.py
+   ```
+
+1. To verify that messages are received properly by the server, open a new terminal window and run `creditcard_receive.py` [script](./rabbitmq/creditcard_receive.py). Quit with `Ctrl+C`.
+   ```bash
+   python3 ./rabbitmq/creditcard_receive.py
+   ```
+
 # Demo
 
 ## Configure Source Connectors
@@ -235,8 +248,8 @@ The fully-managed Oracle CDC Source connector for Confluent Cloud captures each 
 
 1. Run a python script to increase Rica Blaisdell's average credit spend by $1 every 5 seconds. Leave this script running throughout the demo.
 
-   ```
-   python oracle/update_user.py
+   ```bash
+   python3 oracle/update_user.py
    ```
 
 1. Back in the Confluent Cloud console, verify the Rica Blaisdell's average credit has been updated.
