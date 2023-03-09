@@ -10,6 +10,16 @@ Break down data silos and stream on-premises, hybrid, and multicloud data to clo
 
 To learn more about Confluent’s solution, visit the [Database streaming pipelines page](https://www.confluent.io/use-case/database)
 
+## Architecture Diagram
+
+This demo utilizes two fully-managed source connectors (Oracle CDC Source Premium and RabbitMQ) and one fully-managed sink connector (MongoDB Atlas).
+
+<div align="center"> 
+  <img src="images/arch_diagram.png" width =100% heigth=100%>
+</div>
+
+---
+
 # Requirements
 
 In order to successfully complete this demo you need to install few tools before getting started.
@@ -148,9 +158,9 @@ In order to successfully complete this demo you need to install few tools before
    ```bash
    ./env.sh
    ```
-1. This script achieves 2 things:
-   - Creates an API key pair that will be used in connectors' configuration files for authentication purposes
-   - Update the `.env` file to replace the remaining variables with newly generated values.
+1. This script achieves 2 the following:
+   - Creates an API key pair that will be used in connectors' configuration files for authentication purposes.
+   - Updates the `.env` file to replace the remaining variables with the newly generated values.
 
 ### Prepare the Database for Change Data Capture
 
@@ -227,7 +237,11 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
     <summary><b>Confluent Cloud Web UI</b></summary>
 
 1. Log into Confluent Cloud by navigating to https://confluent.cloud
-1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
+1. Step into **Demo_Database_Modernization** environment.
+1. If you are promoted with **Unlock advanced governance controls** screen, click on **No thanks, I will upgrade later**.
+   > **Note:** In this demo, the Essential package for Stream Governance is sufficient. However you can take a moment and review the differences between the Esstentials and Advanced packages.
+1. Step into **demo_kafka_cluster**.
+1. On the navigation menu, select **Connectors** and then **+ Add connector**.
 1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
 1. Create a new Oracle CDC Source Premium connector and complete the required fields using `actual_oracle_cdc.json` file.
 1. Now search for **RabbitMQ** select the **RabbitMQ Source** which is a fully-managed connector.
@@ -404,14 +418,14 @@ You can create the MongoDB Atlas Sink connector either through CLI or Confluent 
 <details>
     <summary><b>Confluent Cloud Web UI</b></summary>
 
-1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
+1. On the navigation menu, select **Connectors** and **+ Add connector**.
 1. In the search bar search for **MongoDB** and select the **MongoDB Atlas Sink** which is a fully-managed connector.
 1. Create a new MongoDB Atlas Sink connector and complete the required fields using `actual_mongodb_sink.json` file.
 
 </details>
 <br>
 
-Once the connector is in **Running** state navigate to **cloud.mongodb.com → Collections → demo-database-modernization_FD_possible_stolen_card** and verify messages are showing up correctly.
+Once the connector is in **Running** state navigate to **cloud.mongodb.com → Collections → demo-db-mod_FD_possible_stolen_card** and verify messages are showing up correctly.
 
 Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-mongo-db-sink.html) for detailed instructions about this connector.
 
@@ -431,6 +445,15 @@ Confluent offers data governance tools such as Stream Quality, Stream Catalog, a
     <div align="center" padding=25px>
        <img src="./confluent/stream-lineage.png" width =75% heigth=75%>
     </div>
+
+---
+
+## CONGRATULATIONS
+
+Congratulations on building your streaming data pipelines for streaming data to cloud databases in Confluent Cloud! Your complete pipeline should resemble the following one.
+![Alt Text](images/stream-lineage.gif)
+
+---
 
 # Teardown
 
