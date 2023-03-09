@@ -229,9 +229,9 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 1. Log into Confluent Cloud by navigating to https://confluent.cloud
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
 1. In the search bar search for **Oracle** and select the **Oracle CDC Source Premium** which is a fully-managed connector.
-1. Create a new Oracle CDC Source Premium connector and complete the required fields using `actual_oracle_cdc.json` [file](./confluent/actual_oracle_cdc.json).
+1. Create a new Oracle CDC Source Premium connector and complete the required fields using `actual_oracle_cdc.json` file.
 1. Now search for **RabbitMQ** select the **RabbitMQ Source** which is a fully-managed connector.
-1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` [file](./confluent/actual_rabbitmq.json).
+1. Create a new RabbitMQ Source connector and complete the required fields using `actual_rabbitmq.json` file.
 
 </details>
 <br>
@@ -406,7 +406,7 @@ You can create the MongoDB Atlas Sink connector either through CLI or Confluent 
 
 1. On the navigation menu, select **Data Integration** and then **Connectors** and **+ Add connector**.
 1. In the search bar search for **MongoDB** and select the **MongoDB Atlas Sink** which is a fully-managed connector.
-1. Create a new MongoDB Atlas Sink connector and complete the required fields using `actual_mongodb_sink.json` [file](./confluent/actual_mongodb_sink.json).
+1. Create a new MongoDB Atlas Sink connector and complete the required fields using `actual_mongodb_sink.json` file.
 
 </details>
 <br>
@@ -423,9 +423,9 @@ Confluent offers data governance tools such as Stream Quality, Stream Catalog, a
 1.  Use the left hand-side menu and click on **Stream Lineage**.
     Stream lineage provides a graphical UI of the end to end flow of your data. Both from the a bird’s eye view and drill-down magnification for answering questions like:
 
-        - Where did data come from?
-        - Where is it going?
-        - Where, when, and how was it transformed?
+    - Where did data come from?
+    - Where is it going?
+    - Where, when, and how was it transformed?
 
     In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
     <div align="center" padding=25px>
