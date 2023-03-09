@@ -1,4 +1,0 @@
-oracledb
-pika
-ccard
-python-dotenv
