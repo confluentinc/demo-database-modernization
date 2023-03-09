@@ -225,9 +225,7 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 
 In this demo, we are using Apache Kafka's Single Message Transforms (SMT) to mask customer PII field before data streams into Confluent Cloud. For more information on SMTs refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/single-message-transforms.html).
 
-Refer to Oracle CDC Source Premium [documentation](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/) for detailed instructions and troubleshooting.
-
-Refer to RabbitMQ [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions and troubleshooting.
+Refer to Oracle CDC Source Premium [documentation](https://docs.confluent.io/cloud/current/connectors/cc-oracle-cdc-source/) and RabbitMQ Source [documentation](https://docs.confluent.io/cloud/current/connectors/cc-rabbitmq-source.html) for detailed instructions and troubleshooting.
 
 ## Update Customer Information in Oracle Database
 
