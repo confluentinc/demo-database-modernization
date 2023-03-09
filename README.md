@@ -167,12 +167,12 @@ In order to successfully complete this demo you need to install few tools before
 1. Use the `creditcard_send.py` [script](./rabbitmq/creditcard_send.py) to continuously populate the **RabbitMQ** instance with sample messages. Leave this running for the demo.
 
    ```bash
-   python3 ./rabbitmq/creditcard_send.py
+   python3 rabbitmq/creditcard_send.py
    ```
 
 1. To verify that messages are received properly by the server, open a new terminal window and run `creditcard_receive.py` [script](./rabbitmq/creditcard_receive.py). Quit with `Ctrl+C`.
    ```bash
-   python3 ./rabbitmq/creditcard_receive.py
+   python3 rabbitmq/creditcard_receive.py
    ```
 
 # Demo
