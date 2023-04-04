@@ -158,7 +158,9 @@ In order to successfully complete this demo you need to install few tools before
    ```bash
    ./env.sh
    ```
+
 1. This script achieves the following:
+
    - Creates an API key pair that will be used in connectors' configuration files for authentication purposes.
    - Updates the `.env` file to replace the remaining variables with the newly generated values.
 
@@ -442,6 +444,7 @@ Confluent offers data governance tools such as Stream Quality, Stream Catalog, a
     - Where, when, and how was it transformed?
 
     In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
+
 
 ---
 
