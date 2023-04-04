@@ -151,14 +151,14 @@ In order to successfully complete this demo you need to install few tools before
 1. Write the output of `terraform` to a JSON file. The `env.sh` script will parse the JSON file to update the `.env` file.
 
    ```bash
-   terraform output -json > resources.json
+   terraform output -json > ../resources.json
    ```
 
 1. Run the `env.sh` script.
    ```bash
    ./env.sh
    ```
-1. This script achieves 2 the following:
+1. This script achieves the following:
    - Creates an API key pair that will be used in connectors' configuration files for authentication purposes.
    - Updates the `.env` file to replace the remaining variables with the newly generated values.
 
