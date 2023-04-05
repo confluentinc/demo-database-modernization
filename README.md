@@ -87,7 +87,7 @@ In order to successfully complete this demo you need to install few tools before
 
     ORACLE_USERNAME=admin
     ORACLE_PASSWORD=db-mod-c0nflu3nt!
-    ORACLE_ENDPOINT=oracle_endpoint
+    ORACLE_ENDPOINT=oracle-endpoint
     ORACLE_PORT=1521
 
     CLOUDAMQP_URL=cloudamqp-url
