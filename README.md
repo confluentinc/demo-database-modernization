@@ -199,6 +199,7 @@ You can use Confluent Cloud CLI to submit all the source connectors automaticall
 1. Run a script that uses your `.env` file to generate real connector configuration json files from the example files located in the `confluent` folder.
 
    ```bash
+   cd demo-database-modernization
    ./confluent/create-connector-files.sh
    ```
 
