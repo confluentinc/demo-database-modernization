@@ -151,7 +151,7 @@ In order to successfully complete this demo you need to install few tools before
 1. Write the output of `terraform` to a JSON file. The `env.sh` script will parse the JSON file to update the `.env` file.
 
    ```bash
-   terraform output -json > resources.json
+   terraform output -json > ../resources.json
    ```
 
 1. Run the `env.sh` script.
