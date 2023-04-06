@@ -87,7 +87,7 @@ In order to successfully complete this demo you need to install few tools before
 
     ORACLE_USERNAME=admin
     ORACLE_PASSWORD=db-mod-c0nflu3nt!
-    ORACLE_ENDPOINT=oracle_endpoint
+    ORACLE_ENDPOINT=oracle-endpoint
     ORACLE_PORT=1521
 
     CLOUDAMQP_URL=cloudamqp-url
@@ -151,16 +151,15 @@ In order to successfully complete this demo you need to install few tools before
 1. Write the output of `terraform` to a JSON file. The `env.sh` script will parse the JSON file to update the `.env` file.
 
    ```bash
-   terraform output -json > ../resources.json
+   terraform output -json > resources.json
    ```
 
 1. Run the `env.sh` script.
    ```bash
+   cd demo-database-modernization
    ./env.sh
    ```
-
 1. This script achieves the following:
-
    - Creates an API key pair that will be used in connectors' configuration files for authentication purposes.
    - Updates the `.env` file to replace the remaining variables with the newly generated values.
 
@@ -200,6 +199,7 @@ You can use Confluent Cloud CLI to submit all the source connectors automaticall
 1. Run a script that uses your `.env` file to generate real connector configuration json files from the example files located in the `confluent` folder.
 
    ```bash
+   cd demo-database-modernization
    ./confluent/create-connector-files.sh
    ```
 
@@ -444,7 +444,6 @@ Confluent offers data governance tools such as Stream Quality, Stream Catalog, a
     - Where, when, and how was it transformed?
 
     In the bird's eye view you see how one stream feeds into another one. As your pipeline grows and becomes more complex, you can use Stream lineage to debug and see where things go wrong and break.
-
 
 ---
 
