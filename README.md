@@ -156,6 +156,7 @@ In order to successfully complete this demo you need to install few tools before
 
 1. Run the `env.sh` script.
    ```bash
+   cd demo-database-modernization
    ./env.sh
    ```
 1. This script achieves the following:
