@@ -30,6 +30,7 @@ echo "Creating Kafka cluster API key"
 CREDENTIALS=$(confluent api-key create --resource $CCLOUD_CLUSTER_ID --description "demo-database-modernization" -o json)
 kafka_api_key=$(echo $CREDENTIALS | jq -r '.api_key')
 kafka_api_secret=$(echo $CREDENTIALS | jq -r '.api_secret')
+
 sleep $sleep_time
 
 # use sed to replace all instances of $kafka_api_key with the replacement string
