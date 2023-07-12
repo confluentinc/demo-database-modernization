@@ -100,6 +100,7 @@ In order to successfully complete this demo you need to install few tools before
     export TF_VAR_cloudamqp_customer_api_key="<replace>"
     export TF_VAR_mongodbatlas_public_key="<replace>"
     export TF_VAR_mongodbatlas_private_key="<replace>"
+    export TF_VAR_mongodbatlas_org_id="<replace>"
 
     MONGO_USERNAME=admin
     MONGO_PASSWORD=db-mod-c0nflu3nt!
@@ -117,6 +118,7 @@ In order to successfully complete this demo you need to install few tools before
     export TF_VAR_cloudamqp_customer_api_key="<replace>"
     export TF_VAR_mongodbatlas_public_key="<replace>"
     export TF_VAR_mongodbatlas_private_key="<replace>"
+    export TF_VAR_mongodbatlas_org_id="<replace>"
    ```
 
 1. Source the `.env` file.
