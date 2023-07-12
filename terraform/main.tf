@@ -6,15 +6,15 @@ terraform {
     }
     confluent = {
       source  = "confluentinc/confluent"
-      version = "1.17.0"
+      version = "1.46.0"
     }
     cloudamqp = {
       source  = "cloudamqp/cloudamqp"
-      version = "1.22.1"
+      version = "1.27.0"
     }
     mongodbatlas = {
       source  = "mongodb/mongodbatlas"
-      version = "1.8.0"
+      version = "1.10.0"
     }
   }
 }
@@ -231,7 +231,7 @@ resource "cloudamqp_instance" "instance" {
   plan        = "lemur"
   region      = "amazon-web-services::us-west-2"
   tags        = ["terraform"]
-  rmq_version = "3.8.3"
+  rmq_version = "3.12.1"
 }
 
 # To retrieve the password for the newly created instance
@@ -239,9 +239,15 @@ data "cloudamqp_credentials" "credentials" {
   instance_id = cloudamqp_instance.instance.id
 }
 
+# Create a Project
+resource "mongodbatlas_project" "atlas-project" {
+  org_id = var.mongodbatlas_org_id
+  name   = var.mongodbatlas_project_name
+}
+
 # Create MongoDB Atlas resources
 resource "mongodbatlas_cluster" "demo-database-modernization" {
-  project_id = var.mongodbatlas_project_id
+  project_id = mongodbatlas_project.atlas-project.id
   name       = "demo-db-mod"
 
   # Provider Settings "block"
@@ -252,7 +258,7 @@ resource "mongodbatlas_cluster" "demo-database-modernization" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "demo-database-modernization-ip" {
-  project_id = var.mongodbatlas_project_id
+  project_id = mongodbatlas_project.atlas-project.id
   cidr_block = "0.0.0.0/0"
   comment    = "Allow connections from anywhere for demo purposes"
 }
@@ -261,7 +267,7 @@ resource "mongodbatlas_project_ip_access_list" "demo-database-modernization-ip" 
 resource "mongodbatlas_database_user" "demo-database-modernization-db-user" {
   username           = var.mongodbatlas_database_username
   password           = var.mongodbatlas_database_password
-  project_id         = var.mongodbatlas_project_id
+  project_id         = mongodbatlas_project.atlas-project.id
   auth_database_name = "admin"
 
   roles {
