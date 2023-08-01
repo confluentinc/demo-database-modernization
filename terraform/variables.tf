@@ -9,6 +9,12 @@ variable "confluent_cloud_api_secret" {
   sensitive   = true
 }
 
+variable "sg_package" {
+  description = "Stream Governance Package: Advanced or Essentials"
+  type        = string
+  default     = "ESSENTIALS"
+}
+
 variable "region" {
   description = "AWS region"
   type        = string
