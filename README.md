@@ -140,15 +140,21 @@ In order to successfully complete this demo you need to install few tools before
    ```
 1. Create the Terraform plan.
    ```bash
-   terraform plan -out=myplan
+   terraform plan
    ```
 1. Apply the plan to create the infrastructure.
 
    ```bash
-   terraform apply myplan
+   terraform apply
    ```
 
    > **Note:** Read the `main.tf` configuration file [to see what will be created](./terraform/main.tf).
+
+1. The default Terraform plan uses the **Essentials** package for Stream Governance. However, you can pass the package type as a command line variable as follow
+
+   ```bash
+   terraform apply -var sg_package="ADVANCED"
+   ```
 
 1. Write the output of `terraform` to a JSON file. The `env.sh` script will parse the JSON file to update the `.env` file.
 
@@ -478,7 +484,7 @@ Go back to the terminal window where the [update_user.py](./oracle/update_user.p
 
 1. Run the following command to delete all resources created by Terraform
    ```bash
-   terraform apply -destory
+   terraform destroy
    ```
 1. Furthermore you can delete your CloudAMQP and MongoDB accounts.
    - To delete CloudAMQP account navigate to https://customer.cloudamqp.com/user/settings and then click on **Delete Account** and proceed with confirmation.
