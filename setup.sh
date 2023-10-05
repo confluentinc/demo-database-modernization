@@ -57,9 +57,3 @@ sed -i .bak "s^cloudamqp-password^$cloudamqp_password^g" .env
 sed -i .bak "s^cloudamqp-url^$cloudamqp_url^g" .env 
 sed -i .bak "s^cloudamqp-vhost^$cloudamqp_virtual_host^g" .env 
 sed -i .bak "s^mongodb-endpoint^$mongodbatlas_connection_string^g" .env 
-
-sleep $sleep_time
-
-#source the .env file 
-echo "Sourcing the .env file"
-source .env

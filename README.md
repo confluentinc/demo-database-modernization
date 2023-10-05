@@ -30,10 +30,14 @@ In order to successfully complete this demo you need to install few tools before
 - Install Oracle DB driver [here](https://oracle.github.io/python-oracledb/).
 - This demo uses Python 3.9.13 version.
 - This demo uses pyodbc, ccard, and pika modules. You can install this module through `pip`.
+
   ```
   pip3 install pyodbc ccard pika
   ```
+
   > **Note:** This demo was built and validate on a Mac (x86).
+
+- Download and Install Terraform [here](https://developer.hashicorp.com/terraform/downloads?ajs_aid=837a4ee4-253b-4b3d-bf11-952575792ad1&product_intent=terraform)
 
 ## Prerequisites
 
@@ -66,8 +70,6 @@ In order to successfully complete this demo you need to install few tools before
 
 ## Setup
 
-1. This demo uses Terraform and bash script to spin up resources that are needed.
-
 1. Clone and enter this repository.
 
    ```bash
@@ -75,40 +77,15 @@ In order to successfully complete this demo you need to install few tools before
    cd demo-database-modernization
    ```
 
-1. Create an environment file to manage all the values you'll need through the setup.
+1. Create an `.accounts` file by running the following command.
 
    ```bash
-    CONFLUENT_CLOUD_EMAIL=<replace>
-    CONFLUENT_CLOUD_PASSWORD=<replace>
-
-    CCLOUD_API_KEY=api-key
-    CCLOUD_API_SECRET=api-secret
-    CCLOUD_BOOTSTRAP_ENDPOINT=kafka-cluster-endpoint
-
-    ORACLE_USERNAME=admin
-    ORACLE_PASSWORD=db-mod-c0nflu3nt!
-    ORACLE_ENDPOINT=oracle-endpoint
-    ORACLE_PORT=1521
-
-    CLOUDAMQP_URL=cloudamqp-url
-    CLOUDAMQP_VIRTUAL_HOST=cloudamqp-vhost
-    CLOUDAMQP_PASSWORD=cloudamqp-password
-    CLOUDAMQP_ENDPOINT=cloudamqp-host
-
-    export TF_VAR_confluent_cloud_api_key="<replace>"
-    export TF_VAR_confluent_cloud_api_secret="<replace>"
-    export TF_VAR_cloudamqp_customer_api_key="<replace>"
-    export TF_VAR_mongodbatlas_public_key="<replace>"
-    export TF_VAR_mongodbatlas_private_key="<replace>"
-    export TF_VAR_mongodbatlas_org_id="<replace>"
-
-    MONGO_USERNAME=admin
-    MONGO_PASSWORD=db-mod-c0nflu3nt!
-    MONGO_ENDPOINT=mongodb-endpoint
-    MONGO_DATABASE_NAME=demo-db-mod
+   echo "CONFLUENT_CLOUD_EMAIL=add_your_email\nCONFLUENT_CLOUD_PASSWORD=add_your_password\nexport TF_VAR_confluent_cloud_api_key=\"add_your_api_key\"\nexport TF_VAR_confluent_cloud_api_secret=\"add_your_api_secret\"\nexport TF_VAR_cloudamqp_customer_api_key=\"add_your_api_key\"\nexport TF_VAR_mongodbatlas_public_key=\"add_your_public_key\"\nexport TF_VAR_mongodbatlas_private_key=\"add_your_private_key\"\nexport TF_VAR_mongodbatlas_org_id=\"add_your_org_id\"" > .accounts
    ```
 
-1. Update the `.env` file for the following variables with your credentials.
+   > **Note:** This repo ignores `.accounts` file
+
+1. Update the `.accounts` file for the following variables with your credentials.
 
    ```bash
     CONFLUENT_CLOUD_EMAIL=<replace>
@@ -121,10 +98,20 @@ In order to successfully complete this demo you need to install few tools before
     export TF_VAR_mongodbatlas_org_id="<replace>"
    ```
 
-1. Source the `.env` file.
+1. Navigate to the home directory of the project and run `create_env.sh` script. This bash script copies the content of `.accounts` file into a new file called `.env` and append additional variables to it.
+
+   ```bash
+   cd demo-database-modernization
+   ./create_env.sh
    ```
+
+1. Source `.env` file.
+
+   ```bash
    source .env
    ```
+
+   > **Note:**: if you don't source `.env` file you'll be prompted to manually provide the values through command line when running Terraform commands.
 
 ### Build your cloud infrastructure
 
@@ -156,20 +143,27 @@ In order to successfully complete this demo you need to install few tools before
    terraform apply -var sg_package="ADVANCED"
    ```
 
-1. Write the output of `terraform` to a JSON file. The `env.sh` script will parse the JSON file to update the `.env` file.
+1. Write the output of `terraform` to a JSON file. The `setup.sh` script will parse the JSON file to update the `.env` file.
 
    ```bash
    terraform output -json > ../resources.json
    ```
 
-1. Run the `env.sh` script.
+1. Run the `setup.sh` script.
    ```bash
    cd demo-database-modernization
-   ./env.sh
+   ./setup.sh
    ```
 1. This script achieves the following:
+
    - Creates an API key pair that will be used in connectors' configuration files for authentication purposes.
    - Updates the `.env` file to replace the remaining variables with the newly generated values.
+
+1. Source `.env` file.
+
+   ```bash
+   source .env
+   ```
 
 ### Prepare the Database for Change Data Capture
 

@@ -30,7 +30,7 @@ variable "rds_instance_class" {
 variable "rds_instance_identifier" {
   description = "Amazon RDS (Oracle) instance identifier"
   type        = string
-  default     = "db-mod-demo"
+  default     = "demo-db-mod"
 }
 
 variable "rds_username" {
