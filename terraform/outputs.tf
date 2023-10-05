@@ -1,5 +1,5 @@
 output "oracle_endpoint" {
-  value = aws_db_instance.db-mod-demo
+  value = aws_db_instance.demo-db-mod
   sensitive = true
 }
 

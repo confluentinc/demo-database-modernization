@@ -2,19 +2,19 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "5.16.2"
     }
     confluent = {
       source  = "confluentinc/confluent"
-      version = "1.46.0"
+      version = "1.51.0"
     }
     cloudamqp = {
       source  = "cloudamqp/cloudamqp"
-      version = "1.27.0"
+      version = "1.28.0"
     }
     mongodbatlas = {
       source  = "mongodb/mongodbatlas"
-      version = "1.10.0"
+      version = "1.12.1"
     }
   }
 }
@@ -204,12 +204,12 @@ resource "confluent_ksql_cluster" "demo-ksql" {
 }
 
 # Create Amazon RDS (Oracle)
-resource "aws_db_instance" "db-mod-demo" {
+resource "aws_db_instance" "demo-db-mod" {
   identifier     = var.rds_instance_identifier
   engine         = "oracle-se2"
   engine_version = "19"
   instance_class = var.rds_instance_class
-  name           = "ORCL"
+  # name           = "ORCL"
   username       = var.rds_username
   password       = var.rds_password
   port           = 1521
@@ -220,18 +220,18 @@ resource "aws_db_instance" "db-mod-demo" {
   skip_final_snapshot = true
   publicly_accessible = true
   tags = {
-    name       = "db-mod-demo"
+    name       = "demo-db-mod"
     created_by = "terraform"
   }
 }
 
 # Create a new cloudamqp instance
 resource "cloudamqp_instance" "instance" {
-  name        = "db-mod-demo"
+  name        = "demo-db-mod"
   plan        = "lemur"
   region      = "amazon-web-services::us-west-2"
   tags        = ["terraform"]
-  rmq_version = "3.12.1"
+  rmq_version = "3.12.6"
 }
 
 # To retrieve the password for the newly created instance
