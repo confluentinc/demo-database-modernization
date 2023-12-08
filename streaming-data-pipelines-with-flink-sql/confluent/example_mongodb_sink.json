@@ -1,0 +1,18 @@
+{
+  "name": "MongoDbAtlasSinkConnector_0",
+  "config": {
+    "connector.class": "MongoDbAtlasSink",
+    "name": "MongoDbAtlasSinkConnector_0",
+    "input.data.format": "AVRO",
+    "kafka.auth.mode": "KAFKA_API_KEY",
+    "kafka.api.key": "<add_your_api_key>",
+    "kafka.api.secret": "<add_your_api_secret_key>",
+    "topics": "fd_possible_stolen_card",
+    "connection.host": "<add_mongo_host_address>",
+    "connection.user": "<add_mongo_username>",
+    "connection.password": "<add_mongo_password>",
+    "database": "<add_mongo_database_name>",
+    "doc.id.strategy": "BsonOidStrategy",
+    "tasks.max": "1"
+  }
+}
