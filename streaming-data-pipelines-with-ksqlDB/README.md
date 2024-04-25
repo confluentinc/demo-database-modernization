@@ -74,7 +74,7 @@ In order to successfully complete this demo you need to install few tools before
 
    ```bash
    git clone https://github.com/confluentinc/demo-database-modernization.git
-   cd demo-database-modernization
+   cd demo-database-modernization/streaming-data-pipelines-with-ksqlDB
    ```
 
 1. Create an `.accounts` file by running the following command.
@@ -101,7 +101,7 @@ In order to successfully complete this demo you need to install few tools before
 1. Navigate to the home directory of the project and run `create_env.sh` script. This bash script copies the content of `.accounts` file into a new file called `.env` and append additional variables to it.
 
    ```bash
-   cd demo-database-modernization
+   cd streaming-data-pipelines-with-ksqlDB
    ./create_env.sh
    ```
 
@@ -117,7 +117,7 @@ In order to successfully complete this demo you need to install few tools before
 
 1. Navigate to the repo's terraform directory.
    ```bash
-   cd terraform
+   cd streaming-data-pipelines-with-ksqlDB/terraform
    ```
 1. Log into your AWS account through command line.
 
@@ -151,7 +151,7 @@ In order to successfully complete this demo you need to install few tools before
 
 1. Run the `setup.sh` script.
    ```bash
-   cd demo-database-modernization
+   cd demo-database-modernization/streaming-data-pipelines-with-ksqlDB
    ./setup.sh
    ```
 1. This script achieves the following:
@@ -170,7 +170,8 @@ In order to successfully complete this demo you need to install few tools before
 1. Run the following Python script to create and populate a `CUSTOMERS` table, as well as enable Change Data Capture (CDC) on that table.
 
    ```bash
-   python3 oracle/prepare_database.py
+   cd streaming-data-pipelines-with-ksqlDB/oracle
+   python3 prepare_database.py
    ```
 
 1. Take a moment to inspect the files in the `oracle` directory to understand what just happened.
@@ -180,12 +181,14 @@ In order to successfully complete this demo you need to install few tools before
 1. Use the `creditcard_send.py` [script](./rabbitmq/creditcard_send.py) to continuously populate the **RabbitMQ** instance with sample messages. Leave this running for the demo.
 
    ```bash
-   python3 rabbitmq/creditcard_send.py
+   cd streaming-data-pipelines-with-ksqlDB/rabbitmq
+   python3 creditcard_send.py
    ```
 
 1. To verify that messages are received properly by the server, open a new terminal window and run `creditcard_receive.py` [script](./rabbitmq/creditcard_receive.py). Quit with `Ctrl+C`.
    ```bash
-   python3 rabbitmq/creditcard_receive.py
+   cd streaming-data-pipelines-with-ksqlDB/rabbitmq
+   python3 creditcard_receive.py
    ```
 
 # Demo
@@ -201,8 +204,8 @@ You can use Confluent Cloud CLI to submit all the source connectors automaticall
 1. Run a script that uses your `.env` file to generate real connector configuration json files from the example files located in the `confluent` folder.
 
    ```bash
-   cd demo-database-modernization
-   ./confluent/create-connector-files.sh
+   cd streaming-data-pipelines-with-ksqlDB/confluent
+   ./create-connector-files.sh
    ```
 
 ### Configure Oracle CDC Source Premium and RabbitMQ Source Connectors
@@ -230,8 +233,9 @@ You can create the connectors either through CLI or Confluent Cloud web UI.
 1. Run the following commands to create Oracle CDC Source Premium and RabbitMQ Source connectors.
 
    ```bash
-   confluent connect cluster create --config-file confluent/actual_oracle_cdc.json
-   confluent connect cluster create --config-file confluent/actual_rabbitmq.json
+   cd streaming-data-pipelines-with-ksqlDB/confluent
+   confluent connect cluster create --config-file actual_oracle_cdc.json
+   confluent connect cluster create --config-file actual_rabbitmq.json
    ```
 
 </details>
@@ -267,7 +271,8 @@ The fully-managed Oracle CDC Source connector for Confluent Cloud captures each 
 1. Run a python script to increase Rica Blaisdell's average credit spend by $1 every 5 seconds. Leave this script running throughout the demo.
 
    ```bash
-   python3 oracle/update_user.py
+   cd streaming-data-pipelines-with-ksqlDB/oracle
+   python3 update_user.py
    ```
 
 1. Back in the Confluent Cloud console, verify the Rica Blaisdell's average credit has been updated.
@@ -413,7 +418,8 @@ You can create the MongoDB Atlas Sink connector either through CLI or Confluent 
 1. Run the following command to create the MongoDB Atlas Sink connector.
 
    ```bash
-   confluent connect cluster create --config-file confluent/actual_mongodb_sink.json
+   cd streaming-data-pipelines-with-ksqlDB/confluent
+   confluent connect cluster create --config-file actual_mongodb_sink.json
    ```
 
 </details>
@@ -473,11 +479,13 @@ Go back to the terminal window where the [update_user.py](./oracle/update_user.p
 1. Run the following command to delete all connectors
 
    ```bash
+   cd streaming-data-pipelines-with-ksqlDB
    ./teardown_connectors.sh
    ```
 
 1. Run the following command to delete all resources created by Terraform
    ```bash
+   cd streaming-data-pipelines-with-ksqlDB/terraform
    terraform destroy
    ```
 1. Furthermore you can delete your CloudAMQP and MongoDB accounts.
