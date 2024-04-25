@@ -68,7 +68,7 @@ Sign up for a free MongoDB Atlas account [here](https://www.mongodb.com/).
 
    ```bash
    git clone https://github.com/confluentinc/demo-database-modernization.git
-   cd demo-database-modernization
+   cd demo-database-modernization/streaming-data-pipelines-with-flink-sql
    ```
 
 1. Create an `.accounts` file by running the following command.
@@ -106,7 +106,7 @@ Update the `.accounts` file for the following variables with your credentials.
 1. Navigate to the `confluent` directory of the project and run `create_env.sh` script. This bash script copies the content of `.accounts` file into a new file called `.env` and append additional variables to it.
 
    ```bash
-   cd demo-database-modernization/confluent
+   cd streaming-data-pipelines-with-flink-sql/confluent
    ./create_env.sh
    ```
 
@@ -125,7 +125,7 @@ Update the `.accounts` file for the following variables with your credentials.
 1. Navigate to the repo's terraform directory.
 
    ```bash
-   cd demo-database-modernization/terraform
+   cd streaming-data-pipelines-with-flink-sql/terraform
    ```
 
 1. Initialize Terraform within the directory.
@@ -152,7 +152,7 @@ Update the `.accounts` file for the following variables with your credentials.
 
 1. Run the `setup.sh` script.
    ```bash
-   cd demo-database-modernization/confluent
+   cd streaming-data-pipelines-with-flink-sql/confluent
    ./setup.sh
    ```
 1. This script achieves the following:
@@ -171,7 +171,7 @@ Update the `.accounts` file for the following variables with your credentials.
 1. Run the following Python script to create and populate a `CUSTOMERS` table, as well as enable Change Data Capture (CDC) on that table.
 
    ```bash
-   cd demo-database-modernization/oracle
+   cd streaming-data-pipelines-with-flink-sql/oracle
    python3 prepare_database.py
    ```
 
@@ -190,7 +190,7 @@ You can use Confluent Cloud CLI to submit all the source connectors automaticall
 Run a script that uses your `.env` file to generate real connector configuration json files from the example files located in the `confluent` folder.
 
 ```bash
-cd demo-database-modernization/confluent
+cd streaming-data-pipelines-with-flink-sql/confluent
 ./create_connector_files.sh
 ```
 
@@ -219,7 +219,7 @@ You can create the connector either through CLI or Confluent Cloud web UI.
 1. Run the following commands to create Oracle CDC Source Premium and RabbitMQ Source connectors.
 
    ```bash
-   cd demo-database-modernization/confluent
+   cd streaming-data-pipelines-with-flink-sql/confluent
    confluent connect cluster create --config-file actual_oracle_cdc.json
    ```
 
@@ -254,7 +254,7 @@ The fully-managed Oracle CDC Source connector for Confluent Cloud captures each 
 1. Run a python script to increase Rica Blaisdell's average credit spend by $1 every 5 seconds. Leave this script running throughout the demo.
 
    ```bash
-   cd demo-database-modernization/oracle
+   cd streaming-data-pipelines-with-flink-sql/oracle
    python3 update_user.py
    ```
 
@@ -268,7 +268,7 @@ In a real world scenario, the credit card transactions might be coming from a we
 
 1. Run the `creditcard_send.py` script
    ```bash
-   cd demo-database-modernization/cc_transaction_scripts
+   cd streaming-data-pipelines-with-flink-sql/cc_transaction_scripts
    python3 creditcard_send.py
    ```
 1. This script generates a sample credit card transaction every second using the Faker library. The messages are serialized with JSON schema and Schema Registry keeps track of its evolution. Schema Registry provides a centralized repository for managing and validating schemas for topic message data, and for serialization and deserialization of the data over the network.
@@ -447,11 +447,13 @@ Go back to the terminal window where the [update_user.py](./oracle/update_user.p
 1. Run the following command to delete all connectors
 
    ```bash
+   cd streaming-data-pipelines-with-flink-sql/confluent
    ./teardown_connectors.sh
    ```
 
 1. Run the following command to delete all resources created by Terraform
    ```bash
+   cd streaming-data-pipelines-with-flink-sql/terraform
    terraform destroy
    ```
 
